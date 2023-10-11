@@ -1,0 +1,106 @@
+<!DOCTYPE html><html><head><title>Hereford Product Density Converter</title><style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo img {
+            max-width: 400px;
+            height: auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+        
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn-clear {
+            background-color: #f44336;
+            margin-left: 10px;
+        }
+    </style></head><body><h1>Hereford Product Density Converter</h1><div class="container"><div class="logo"><img src="logo.png" alt="Logo"></div><div class="form-group"><label for="pounds-per-bushel">Pounds per Bushel:</label><input type="text" id="pounds-per-bushel"></div><div class="form-group"><label for="pounds-per-cubic-feet">Pounds per Cubic Feet:</label><input type="text" id="pounds-per-cubic-feet"></div><div class="result" id="result"></div><button class="btn" onclick="convert()">Convert</button><button class="btn btn-clear" onclick="clearFields()">Clear</button></div><script>
+        function convert() {
+            var poundsPerBushel = parseFloat(document.getElementById("pounds-per-bushel").value);
+            var poundsPerCubicFeet = parseFloat(document.getElementById("pounds-per-cubic-feet").value);
+            var result = document.getElementById("result");
+            
+            if (!isNaN(poundsPerBushel)) {
+                var convertedValue = (poundsPerBushel / 1.244456021).toFixed(1);
+                document.getElementById("pounds-per-cubic-feet").value = convertedValue;
+                document.getElementById("pounds-per-cubic-feet").style.color = "red";
+                document.getElementById("pounds-per-bushel").style.color = "black";
+                result.innerHTML = "Converted value: " + convertedValue + " pounds per cubic feet";
+                result.style.color = "green";
+            } else if (!isNaN(poundsPerCubicFeet)) {
+                var convertedValue = (poundsPerCubicFeet * 1.244456021).toFixed(1);
+                document.getElementById("pounds-per-bushel").value = convertedValue;
+                document.getElementById("pounds-per-bushel").style.color = "red";
+                document.getElementById("pounds-per-cubic-feet").style.color = "black";
+                result.innerHTML = "Converted value: " + convertedValue + " pounds per bushel";
+                result.style.color = "green";
+            } else {
+                result.innerHTML = "Please enter a value!";
+                result.style.color = "red";
+            }
+        }
+        
+        function clearFields() {
+            document.getElementById("pounds-per-bushel").value = "";
+            document.getElementById("pounds-per-cubic-feet").value = "";
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("pounds-per-bushel").style.color = "black";
+            document.getElementById("pounds-per-cubic-feet").style.color = "black";
+        }
+    </script></body></html>
